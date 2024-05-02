@@ -1,0 +1,8 @@
+name: BluemapTraincartsConnector
+version: '${project.version}'
+main: com.houtknots.bluemaptraincartsconnector.BluemapTraincartsConnector
+api-version: '1.20'
+authors: [houtknots, 78wesley]
+website: https://houtknots.com/
+description: Plugin to display TrainCarts trains on BlueMap
+depend: [BlueMap, BKCommonLib, Train_Carts]

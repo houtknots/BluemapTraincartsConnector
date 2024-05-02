@@ -1,0 +1,43 @@
+# Configuration file for BluemapTraincartsConnector
+
+# Update interval for the train checkers in seconds
+# NOTE: (houtknots): BlueMap as of 05-2024 onlyupdates the markers every ~10
+# seconds faster updates may not have the desired result.
+# Default: 2
+updateInterval: 2
+
+# Only show Trains which have the tags listed in the connectorTags config
+# option. If set to false all TrainCarts trains will be displayed
+# Default: true
+connectorShowTaggedOnly: true
+
+# A list of tags set to a Train which indicates whether the Train should be
+# displayed on the BlueMap.
+# Default: [bluemap, Bluemap, BlueMap]
+connectorTags:
+  - bluemap
+  - Bluemap
+  - BlueMap
+
+connectorStorageTags:
+  - bluemapstorage
+  - Bluemapstorage
+  - BlueMapStorage
+
+# The Icon used by BlueMap to display the Trains with, found in the 
+# "bluemap/web/assets/" directory
+# Default: "assets/minecart-pio.png"
+connectorTrainIcon: "assets/btc-minecart-pio.png"
+connectorStorageTrainIcon: "assets/btc-storage-pio.png"
+
+# The ID for the TrainCarts BlueMap MarkerSet
+# Default: traincarts
+markerSetID: traincarts
+
+# The Label for the TrainCarts BlueMap MarkerSet
+# Default: TrainCarts
+markerSetLabel: TrainCarts
+
+# Hide TrainCarts MarkerSet by default, toggle to show markers on Map
+# Default: false
+markerSetDefaultHidden: false
