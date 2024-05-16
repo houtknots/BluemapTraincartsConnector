@@ -5,12 +5,20 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.houtknots</groupId>
-  <artifactId>BluemapTraincartsConnector</artifactId>
-  <version>1.20.4</version>
+  <artifactId>bluemaptraincartsconnector</artifactId>
+  <version>1.20.4-v1</version>
   <packaging>jar</packaging>
 
   <name>Bluemap Traincarts Connector</name>
 
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub OWNER Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/houtknots/BluemapTraincartsConnector</url>
+    </repository>
+  </distributionManagement>
+  
   <properties>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,7 +29,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
+        <version>3.13.0</version>
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
