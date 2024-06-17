@@ -98,7 +98,7 @@
       <dependency>
           <groupId>com.github.BlueMap-Minecraft</groupId>
           <artifactId>BlueMapAPI</artifactId>
-          <version>v2.7.2</version>
+          <version>v2.7.0</version>
           <scope>provided</scope>
       </dependency>
   </dependencies>
