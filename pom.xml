@@ -6,7 +6,7 @@
 
   <groupId>com.houtknots</groupId>
   <artifactId>bluemaptraincartsconnector</artifactId>
-  <version>1.20.4-v2</version>
+  <version>1.20.6-v1</version>
   <packaging>jar</packaging>
 
   <name>Bluemap Traincarts Connector</name>
@@ -80,7 +80,7 @@
       <dependency>
           <groupId>org.spigotmc</groupId>
           <artifactId>spigot-api</artifactId>
-          <version>1.20.4-R0.1-SNAPSHOT</version>
+          <version>1.20.6-R0.1-SNAPSHOT</version>
           <scope>provided</scope>
       </dependency>
       <dependency>
@@ -98,7 +98,7 @@
       <dependency>
           <groupId>com.github.BlueMap-Minecraft</groupId>
           <artifactId>BlueMapAPI</artifactId>
-          <version>v2.7.0</version>
+          <version>v2.7.2</version>
           <scope>provided</scope>
       </dependency>
   </dependencies>
