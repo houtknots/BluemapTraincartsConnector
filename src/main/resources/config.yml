@@ -13,22 +13,15 @@ connectorShowTaggedOnly: true
 
 # A list of tags set to a Train which indicates whether the Train should be
 # displayed on the BlueMap.
-# Default: [bluemap, Bluemap, BlueMap]
-connectorTags:
-  - bluemap
-  - Bluemap
-  - BlueMap
+# Make sure to put the icons files in the "bluemap/web/assets/" directory.
+tagMap:
+  bluemap: "assets/btc-minecart-pio.png"
+  bluemapstorage: "assets/btc-storage-pio.png"
 
-connectorStorageTags:
-  - bluemapstorage
-  - Bluemapstorage
-  - BlueMapStorage
-
-# The Icon used by BlueMap to display the Trains with, found in the 
-# "bluemap/web/assets/" directory
-# Default: "assets/minecart-pio.png"
-connectorTrainIcon: "assets/btc-minecart-pio.png"
-connectorStorageTrainIcon: "assets/btc-storage-pio.png"
+# The default icon for the TrainCart on the BlueMap
+# Make sure to put the icons files in the "bluemap/web/assets/" directory.
+# Default: "assets/btc-minecart-pio.png"
+defaultTrainIcon: "assets/btc-minecart-pio.png"
 
 # The ID for the TrainCarts BlueMap MarkerSet
 # Default: traincarts

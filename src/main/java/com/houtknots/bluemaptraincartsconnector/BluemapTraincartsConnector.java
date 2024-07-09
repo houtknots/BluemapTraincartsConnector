@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -109,20 +110,34 @@ public final class BluemapTraincartsConnector extends JavaPlugin {
 
     // Check if the Train tags match the tags assigned in config.yml
     private boolean checkTags(Set<String> trainTags) {
-        // Retrieve the list of connector tags from configuration
-        List<String> connectorTags = getConfig().getStringList("connectorTags");
+        // Convert all trainTags to uppercase
+        Set<String> upperTrainTags = trainTags.stream()
+                                            .map(String::toUpperCase)
+                                            .collect(Collectors.toSet());
 
-        // Check if any tag in 'connectorTags' is present in 'trainTags'
-        for (String tag : connectorTags) {
-            if (trainTags.contains(tag)) {
-                return true;  // Return true as soon as any matching tag is found
+        // Retrieve tags from the configuration, convert them to uppercase, and check for matches
+        return getConfig().getConfigurationSection("tagMap").getKeys(true).stream()
+                        .map(String::toUpperCase)
+                        .anyMatch(upperTrainTags::contains);
+    }
+
+    
+    // Retrieve the MarkerIcon for the Train
+    public String getTagIcon(Set<String> trainTags) {
+        // Retrieve the keys from the tagMap section
+        Set<String> tagMapKeys = getConfig().getConfigurationSection("tagMap").getKeys(false);
+
+        // Find any match in trainTags
+        for (String key : tagMapKeys) {
+            if (trainTags.contains(key)) {
+                // Return the corresponding value
+                return getConfig().getString("tagMap." + key);
             }
         }
 
-        // Check if any tag in 'connectorStorageTags' is present in 'trainTags'
-        return this.checkStorageTags(trainTags);
-    }
-
+        // Return the default train icon or some default value if no match is found
+        return getConfig().getString("defaultTrainIcon");
+    }    
 
     // Update the Train Locations on the BlueMap
     private void updateTrainLocations() {
@@ -157,11 +172,7 @@ public final class BluemapTraincartsConnector extends JavaPlugin {
 
                 // Select the markerIcon to use
                 String markerIcon = null;
-                if (this.checkStorageTags(trainTags)) {
-                    markerIcon = getConfig().getString("connectorStorageTrainIcon");
-                } else {
-                    markerIcon = getConfig().getString("connectorTrainIcon");
-                }
+                markerIcon = getTagIcon(trainTags);
 
                 String finalTrainName = TrainName;
                 String finalMarkerIcon = markerIcon;
@@ -179,7 +190,7 @@ public final class BluemapTraincartsConnector extends JavaPlugin {
                     final POIMarker marker = POIMarker.builder()
                             .position(pos)
                             .label(finalTrainName)
-                            .icon(finalMarkerIcon, 10, 10 )
+                            .icon(finalMarkerIcon, 10, 10)
                             .build();
                     this.WORLDS.get(world).getMarkers().put(uuid, marker);
                 });
