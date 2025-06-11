@@ -92,7 +92,7 @@
       <dependency>
           <groupId>com.bergerkiller.bukkit</groupId>
           <artifactId>TrainCarts</artifactId>
-          <version>1.21.1-v1</version>
+          <version>1.21.5-v1</version>
           <scope>provided</scope>
       </dependency>
       <dependency>
