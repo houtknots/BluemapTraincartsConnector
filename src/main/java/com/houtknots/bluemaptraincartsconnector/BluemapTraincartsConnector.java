@@ -127,11 +127,21 @@ public final class BluemapTraincartsConnector extends JavaPlugin {
         // Retrieve the keys from the tagMap section
         Set<String> tagMapKeys = getConfig().getConfigurationSection("tagMap").getKeys(false);
 
+        // Build a mapping of uppercase -> original key for case-insensitive lookups
+        Map<String, String> upperKeyMap = tagMapKeys.stream()
+                .collect(Collectors.toMap(String::toUpperCase, k -> k));
+
+        // Convert incoming train tags to upper case for case insensitive matching
+        Set<String> upperTrainTags = trainTags.stream()
+                .map(String::toUpperCase)
+                .collect(Collectors.toSet());
+
         // Find any match in trainTags
-        for (String key : tagMapKeys) {
-            if (trainTags.contains(key)) {
-                // Return the corresponding value
-                return getConfig().getString("tagMap." + key);
+        for (String key : upperKeyMap.keySet()) {
+            if (upperTrainTags.contains(key)) {
+                // Return the corresponding value using the original key
+                String originalKey = upperKeyMap.get(key);
+                return getConfig().getString("tagMap." + originalKey);
             }
         }
 
